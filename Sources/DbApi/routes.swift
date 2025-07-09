@@ -5,10 +5,8 @@ func routes(_ app: Application) throws {
     app.get { req async in
         "It works!"
     }
-
-    app.get("hello") { req async -> String in
-        "Hello, world!"
+    
+    try app.group("api") { builder in
+        try builder.register(collection: HeroController())
     }
-
-    try app.register(collection: TodoController())
 }
